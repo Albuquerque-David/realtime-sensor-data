@@ -13,3 +13,4 @@ mongomock-motor==0.0.34
 bcrypt==4.2.1 
 passlib==1.7.4
 PyJWT==2.8.0
+locust==2.32.4
