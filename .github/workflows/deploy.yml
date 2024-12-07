@@ -44,3 +44,14 @@ jobs:
         run: |
           docker compose down
           docker compose up --build -d
+
+      - name: Load Test (Optional)
+        if: github.event.inputs.run-load-test == 'true'
+        run: make load-test
+    
+      - name: Upload Test Results
+        if: github.event.inputs.run-load-test == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: load-test-results
+          path: reports/
