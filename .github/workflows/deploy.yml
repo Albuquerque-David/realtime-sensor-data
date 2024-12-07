@@ -18,13 +18,13 @@ jobs:
 
       - name: Build Docker for Tests
         run: |
-          docker-compose build
+          docker compose build
 
       - name: Run Tests - Backend
         run: |
-          docker-compose run backend pytest --cache-clear --maxfail=5 --disable-warnings
+          docker compose run backend pytest --cache-clear --maxfail=5 --disable-warnings
 
       - name: Deploy com Docker Compose
         run: |
-          docker-compose down
-          docker-compose up --build -d
+          docker compose down
+          docker compose up --build -d
