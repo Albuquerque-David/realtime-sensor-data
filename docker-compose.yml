@@ -12,6 +12,13 @@ services:
       - ./backend/.env
     depends_on:
       - mongo
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - MONGO_URI=${MONGO_URI}
+      - API_HOST=${API_HOST}
+      - API_PORT=${API_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALGORITHM=${ALGORITHM}
 
   frontend:
     build:
@@ -21,6 +28,8 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
   mongo:
     image: mongo:6.0

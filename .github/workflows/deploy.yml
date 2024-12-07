@@ -8,6 +8,13 @@ on:
 jobs:
   ci-cd:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+      API_HOST: ${{ secrets.API_HOST }}
+      API_PORT: ${{ secrets.API_PORT }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ALGORITHM: ${{ secrets.ALGORITHM }}
 
     steps:
       - name: Checkout
@@ -16,15 +23,15 @@ jobs:
       - name: Config Docker
         uses: docker/setup-buildx-action@v2
 
-      - name: Build Docker for Tests
+      - name: Build Docker
         run: |
           docker compose build
 
-      - name: Run Tests - Backend
+      - name: Run Tests Backend
         run: |
           docker compose run backend pytest --cache-clear --maxfail=5 --disable-warnings
 
-      - name: Deploy com Docker Compose
+      - name: Deploy
         run: |
           docker compose down
           docker compose up --build -d
