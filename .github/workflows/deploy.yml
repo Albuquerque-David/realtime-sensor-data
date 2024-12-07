@@ -32,9 +32,6 @@ jobs:
           echo "ALGORITHM=${ALGORITHM}" >> backend/.env
           echo "NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}" >> frontend/.env
 
-      - name: Check env file
-        run: cat backend/.env
-
       - name: Build Docker
         run: |
           docker compose build
